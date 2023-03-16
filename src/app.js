@@ -1,6 +1,10 @@
 import "./reset.css";
 import "./style.css";
 
+
+
+
+
 function getWeather(location){
     const apiCall = `https://api.openweathermap.org/data/2.5/weather?q=`;
 
