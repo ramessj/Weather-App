@@ -1,0 +1,19 @@
+body{
+    background-image: url(./img/default.svg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position-x: center;    
+    height: 100dvh;
+    width: 100dvw;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.searchBar{
+    margin: 2rem;
+}
+
+.searchBar label{
+    display: none;
+}
