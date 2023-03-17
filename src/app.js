@@ -33,7 +33,7 @@ let renderData = (data) =>{
 }
 
 
-getWeather("Mercedes, UY");
+getWeather("Dolores, UY");
 
 // const getUserPosition = ()=>{
 
