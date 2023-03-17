@@ -2,40 +2,6 @@ import "./reset.css";
 import "./style.css";
 
 
-//console.log(process.env)
-
-
-
-
-function getWeather(location){
-    const apiCall = `https://api.openweathermap.org/data/2.5/weather?q=`;
-
-   
-    const apiKey = process.env.OWEATHER_API_KEY;
-
-    const appIdText = "&appid="
-
-    const apiOptional = "&lang=es&units=metric";
-
-    fetch(apiCall + location + appIdText + apiKey + apiOptional)
-    .then (response => response.json())
-    .then (data => {
-        console.log(data)
-
-
-
-        renderData(data);
-    })   
-    .catch((error)=> console.log(error))
-}
-
-
-
-let renderData = (data) =>{
-    console.log("este seria el codigo para mostrar en el dom")
-}
-
-
 
 const getUserPosition = async () => {
   const options = {
@@ -62,9 +28,6 @@ const getUserPosition = async () => {
 
     getCity(lat, lon)
 
-
-    console.log(error);
-    
   }
 
   
@@ -101,4 +64,41 @@ function getCity(lat, lon){
       
   })   
   .catch((error)=> console.log(error))
+}
+
+
+
+
+
+
+function getWeather(location){
+    const apiCall = `https://api.openweathermap.org/data/2.5/weather?q=`;
+
+   
+    const apiKey = process.env.OWEATHER_API_KEY;
+
+    const appIdText = "&appid="
+
+    const apiOptional = "&lang=es&units=metric";
+
+    fetch(apiCall + location + appIdText + apiKey + apiOptional)
+    .then (response => response.json())
+    .then (data => {
+        console.log(data)
+
+
+
+        renderData(data);
+    })   
+    .catch((error)=> console.log(error))
+}
+
+
+
+
+
+
+let renderData = (data) =>{
+  console.log("este seria el codigo para mostrar en el dom");
+  console.log(data.name)
 }
