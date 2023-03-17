@@ -2,7 +2,7 @@ import "./reset.css";
 import "./style.css";
 
 
-console.log(process.env)
+//console.log(process.env)
 
 
 
