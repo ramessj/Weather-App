@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+require('dotenv').config({ path: './.env' }); 
+const webpack = require('webpack');
 
 const path = require("path");
 
@@ -10,11 +12,11 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
-  devServer: {    
-    watchFiles: ["./src/*"], // string [string] object [object]
+  devServer: {         
     port: 3000,
     open: true,
     hot: true,
+    watchFiles: ["./src", "./dist"]
   },
   module: {
     rules: [
@@ -28,6 +30,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "./src/srcindex.html",
+    }),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(process.env),
     }),
   ],
   optimization: {

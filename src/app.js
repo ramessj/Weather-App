@@ -2,13 +2,16 @@ import "./reset.css";
 import "./style.css";
 
 
+console.log(process.env)
+
 
 
 
 function getWeather(location){
     const apiCall = `https://api.openweathermap.org/data/2.5/weather?q=`;
 
-    const apiKey = "37b5cee3414c41022c728c8f21d250e3";
+    //const apiKey = "37b5cee3414c41022c728c8f21d250e3";
+    const apiKey = process.env.OWEATHER_API_KEY;
 
     const appIdText = "&appid="
 
@@ -32,23 +35,51 @@ let renderData = (data) =>{
 
 getWeather("Mercedes, UY");
 
-const getUserPosition = ()=>{
+// const getUserPosition = ()=>{
 
-const successCallback = (position) => {
-    console.log(position);
-  };
+// const successCallback = (position) => {
+//     console.log(position);
+//     return position
+//   };
   
-  const errorCallback = (error) => {
-    console.log(error);
-  };
+//   const errorCallback = (error) => {
+//     console.log(error);
+//     return error
+//   };
   
-  const options = {
-    enableHighAccuracy: true
+//   const options = {
+//     enableHighAccuracy: true
     
+//   };
+
+// const userLocation = navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+// console.log(userLocation)
+// }
+
+// getUserPosition();
+
+const getUserPosition = async () => {
+  const options = {
+    enableHighAccuracy: true,
   };
 
-const userLocation = navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
-console.log(userLocation)
-}
+  // wrapping getCurrentPostion in a Promise
+  const positionPromise = new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject, options);
+  });
 
+  try {
+    // using await to wait for the Promise to resolve
+    const position = await positionPromise;
+    //console.log(position);
+    
+    return position;
+  } catch (error) {
+    //console.log(error);
+    return error;
+  }
+};
 
+let pos = getUserPosition();
+
+console.log(pos)
