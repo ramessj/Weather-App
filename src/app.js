@@ -11,7 +11,7 @@ function getWeather(location){
     const apiCall = `https://api.openweathermap.org/data/2.5/weather?q=`;
 
    
-    const apiKey = process.env.OWEATHER_API_KEY;
+    const apiKey = OWEATHER_API_KEY;
 
     const appIdText = "&appid="
 
