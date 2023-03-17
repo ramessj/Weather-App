@@ -10,7 +10,7 @@ console.log(process.env)
 function getWeather(location){
     const apiCall = `https://api.openweathermap.org/data/2.5/weather?q=`;
 
-    //const apiKey = "37b5cee3414c41022c728c8f21d250e3";
+   
     const apiKey = process.env.OWEATHER_API_KEY;
 
     const appIdText = "&appid="
@@ -71,9 +71,9 @@ const getUserPosition = async () => {
   try {
     // using await to wait for the Promise to resolve
     const position = await positionPromise;
-    //console.log(position);
+    console.log(position);
     
-    return position;
+    //return position;
   } catch (error) {
     //console.log(error);
     return error;
