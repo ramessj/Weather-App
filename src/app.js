@@ -11,7 +11,7 @@ function getWeather(location){
     const apiCall = `https://api.openweathermap.org/data/2.5/weather?q=`;
 
    
-    const apiKey = OWEATHER_API_KEY;
+    const apiKey = process.env.OWEATHER_API_KEY;
 
     const appIdText = "&appid="
 
@@ -21,6 +21,9 @@ function getWeather(location){
     .then (response => response.json())
     .then (data => {
         console.log(data)
+
+
+
         renderData(data);
     })   
     .catch((error)=> console.log(error))
@@ -29,34 +32,10 @@ function getWeather(location){
 
 
 let renderData = (data) =>{
-    
+    console.log("este seria el codigo para mostrar en el dom")
 }
 
 
-getWeather("Dolores, UY");
-
-// const getUserPosition = ()=>{
-
-// const successCallback = (position) => {
-//     console.log(position);
-//     return position
-//   };
-  
-//   const errorCallback = (error) => {
-//     console.log(error);
-//     return error
-//   };
-  
-//   const options = {
-//     enableHighAccuracy: true
-    
-//   };
-
-// const userLocation = navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
-// console.log(userLocation)
-// }
-
-// getUserPosition();
 
 const getUserPosition = async () => {
   const options = {
@@ -69,17 +48,51 @@ const getUserPosition = async () => {
   });
 
   try {
-    // using await to wait for the Promise to resolve
-    const position = await positionPromise;
-    console.log(position);
     
-    //return position;
+    const userPosition = await positionPromise;     
+    const lat = userPosition.coords.latitude;
+    const lon = userPosition.coords.longitude;
+
+    getCity(lat, lon)
+    
+    
   } catch (error) {
-    //console.log(error);
-    return error;
+    console.log(error);
+    
   }
+
+  
 };
 
-let pos = getUserPosition();
+getUserPosition();
 
-console.log(pos)
+
+
+
+function getCity(lat, lon){
+  const endPoint = `https://us1.locationiq.com`;
+
+  const apiMethod = "/v1/reverse.php?key="
+
+ 
+  const apiKey = process.env.LOCATIONIQ_API_KEY;
+
+  const flat = "&lat=" + lat;
+  const flon = "&lon=" + lon;
+
+  const apiOptional = "&format=json";
+
+  fetch(endPoint + apiMethod + apiKey + flat + flon + apiOptional)
+  .then (response => response.json())
+  .then (data => {
+      const cityName =  data.address.city;
+      const countryCode = data.address.country_code;
+
+      const cityCountry = cityName + ", " + countryCode.toUpperCase();
+      
+      getWeather(cityCountry);
+
+      
+  })   
+  .catch((error)=> console.log(error))
+}
