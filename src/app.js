@@ -57,6 +57,12 @@ const getUserPosition = async () => {
     
     
   } catch (error) {
+    const lat = -33.255630;
+    const lon = -58.030730;
+
+    getCity(lat, lon)
+
+
     console.log(error);
     
   }
