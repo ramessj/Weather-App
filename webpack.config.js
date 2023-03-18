@@ -22,7 +22,11 @@ module.exports = {
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
-      },
+      },  
+      {
+        test: /\.(svg|png|jpg|jpeg|gif|ico)$/,
+        exclude: /node_modules/,
+      }    
     ],
   },
   plugins: [
@@ -33,6 +37,8 @@ module.exports = {
       new HtmlWebpackPlugin({
       filename: "index.html",
       template: "./src/srcindex.html",
+      favicon: "./src/favicon.ico",
+      inject: true,
     }),       
     
   ],
