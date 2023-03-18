@@ -5,24 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
+    <script src="https://cdn.jsdelivr.net/npm/translate@1/translate.min.js" defer></script>
 </head>
-<body id="body">
+<body id="body" class="bgDefault">
 
+    <div class="searchBarContainer">
     <div class="searchBar">
         <label for="input"></label>
-        <input type="text" name="input" title="City Name">
-        <button type="button">Buscar</button>
-
+        <input type="text" name="input" title="Enter City Name" placeholder="Mercedes, UY" id="inputSearchCity">
+        <button type="button" id="btnSearchCity">Buscar</button>
+    </div>
+        <div id="opciones" class="opciones"></div>
     </div>
 
     <div class="content">
-        <div class="weather">
+        <div class="weather" id="weatherCard">
             1
         </div>
-        <div class="map">
+        <div class="map" id="mapCard">
             2
         </div>
     </div>
+
+    
 
     <div class="footer">
         <p>
