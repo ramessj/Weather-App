@@ -11,12 +11,20 @@ body {
 }
 
 .searchBar {
-  height: 8%;
-  padding-top: 3rem;
+  height: 13%;
+  display: flex;
+  align-items: center;
+  max-width: 85%;
+  gap: 0.5rem;
 }
 
 .searchBar * {
-  font-size: 1.1rem;
+  font-size: 1rem;
+  -webkit-border-radius: .5rem;
+  -moz-border-radius: .5rem;
+  -ms-border-radius: .5rem;
+  -o-border-radius: .5rem;
+  border-radius: .5rem;
 }
 
 .searchBar label {
@@ -27,8 +35,10 @@ body {
 
 .content {
   width: 80%;
+  max-width: 30rem;
   display: flex;
   flex-direction: column;
+  
   gap: 1rem;
   height: 80%;
 }
@@ -43,7 +53,7 @@ body {
   );
   -webkit-backdrop-filter: blur(21px);
   backdrop-filter: blur(21px);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.277);
   border: 1px solid rgba(255, 255, 255, 0.16);
   -webkit-border-radius: 24px;
   -moz-border-radius: 24px;
@@ -53,15 +63,91 @@ body {
   padding: 1rem;
 }
 
-@media (min-width: 1000px) {
+/******************FOOTER********************************/
+
+.footer{
+  position:fixed;
+  left:0px;
+  bottom: .5rem;
+  height:2rem;
+  width:100%;
+  display: flex;
+  justify-content: center;
+  color: white; 
+  text-shadow: black 0 0 8px;
+}
+
+.footerLink{
+  text-decoration: none;
+  font-weight: 600;
+  -webkit-filter: brightness(140%);
+  filter: brightness(140%);
+  text-shadow: white 1px 1px 5px;
+  -webkit-transition: font-size 0.2s ease-in-out;
+  -moz-transition: font-size 0.2s ease-in-out;
+  -ms-transition: font-size 0.2s ease-in-out;
+  -o-transition: font-size 0.2s ease-in-out;
+  transition: font-size 0.2s ease-in-out;
+}
+
+.footerLink:hover{
+  font-size: 1.35rem;
+}
+
+.colorLink{
+  -webkit-animation: color-change 14s infinite;
+  animation: color-change 14s infinite;
+}
+
+@keyframes color-change{
+  0% {color: red;}
+  7.14% {color: orange;}
+  14.28% {color: yellow;}
+  21.42% {color: green;}
+  28.56% {color: blue;}
+  35.7% {color: indigo;}
+  42.84% {color: violet;}
+  50% {color: red;}
+  57.14% {color: orange;}
+  64.28% {color: yellow;}
+  71.42% {color: green;}
+  78.56% {color: blue;}
+  85.7% {color: indigo;}
+  92.84% {color: violet;}
+  100% {color:red}
+}
+
+
+
+/*******************************************************/
+
+
+@media (width >= 1000px) {
+
+  .searchBar *{
+    font-size: 1.2rem;
+  }
+
   .content {
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    height: 75%;
+    gap: 5rem;
+    max-width: 70rem;
   }
 
   .weather,
   .map {
-    height: 100%;
+    height: 60%;
     width: 100%;
+    
   }
+
+  .footer{
+    font-size: 1.25rem;
+  }
+
+
+
 }
