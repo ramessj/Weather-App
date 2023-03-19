@@ -59,9 +59,13 @@ function inputToCity(inputValue){
   })
     .then(response => response.json())
     .then(data  => {
-
+      
       const opciones = data.map(ciudad => {
         const div = document.createElement("div");
+        const location = {};
+        location.lat = ciudad.coordinates.latitude;
+        location.lon = ciudad.coordinates.longitude;
+        div.setAttribute("data", `${JSON.stringify(location)}`)
         div.textContent = ciudad.name + ", " +  ciudad.country.id;
         div.classList.add("opcion"); // Agregar clase opcion
         return div;
@@ -72,40 +76,49 @@ function inputToCity(inputValue){
 
       // Insertar nuevas opciones en el contenedor
       opciones.forEach(opcion => {
+        
+        opcion.addEventListener("click", attributeToGetCity)
+
         contenedorOpciones.appendChild(opcion);
+
+      
       });
+
+      contenedorOpciones.style.display = "flex"
     })
       
       
     
     .catch(err => console.error(err));
   
-
-
-
 }
+
+// Event listener para el ENTER del input
 
 inputSearchCity.addEventListener("keyup", (e) => {
 
   if(e.key == "Enter"){
     e.preventDefault();
-
-    inputToCity(inputSearchCity.value)
-
-
+    inputToCity(inputSearchCity.value);
   }
+});
 
+// Evnet listener para el boton buscar
 
+btnSearchCity.addEventListener("click", () => {
+  let inputValue = inputSearchCity.value; 
+  inputToCity(inputValue);
 })
 
 
 
+// toma el data attribute y lo parsea para pasarselo a getCity
 
-
-
-
-
-
+const attributeToGetCity = (e)=>{  
+  let attribute = JSON.parse(e.target.getAttribute("data"));
+  getCity(attribute);
+  contenedorOpciones.style.display = "none"
+}
 
 
 
@@ -118,30 +131,29 @@ inputSearchCity.addEventListener("keyup", (e) => {
 
 
 function getCity(coords) {
-  const endPoint = `https://us1.locationiq.com`;
+  const endPoint = `http://api.openweathermap.org/geo/1.0/reverse?`;
 
-  const apiMethod = "/v1/reverse.php?key=";
+ 
+  const apiKey = process.env.OWEATHER_API_KEY;
 
-  const apiKey = process.env.LOCATIONIQ_API_KEY;
-
-  const flat = "&lat=" + coords.lat;
+  const flat = "lat=" + coords.lat;
   const flon = "&lon=" + coords.lon;
 
   const apiOptional = "&format=json";
 
-  fetch(endPoint + apiMethod + apiKey + flat + flon + apiOptional)
+  fetch(endPoint + flat + flon + "&limit=1&appid=" + apiKey)
     .then((response) => response.json())
     .then((data) => {   
-     
+
       //pasa ciudad y codigo de pais a la funcion getWeather para obtener datos
       const datos = {};
      
-      datos.cityCountryCode = data.address.city + ", " + data.address.country_code;
+      datos.cityCountryCode = data[0].name + ", " + data[0].country;
 
       ///datos extra para pasarle a get weather y este a render data 
-      datos.city = data.address.city;
-      datos.state = data.address.state;
-      datos.country = data.address.country_code;
+      datos.city = data[0].name;
+      datos.state = data[0].state;
+      datos.country = data[0].country;
 
       getWeather(datos);
     })
@@ -263,13 +275,9 @@ let renderData = (weatherData, cityData) => {
   //weatherCard titulo, muestra nombre, departamento y pais (proximamente bandera)
   let cityInfoDiv = document.createElement("div");
   cityInfoDiv.classList.add("cityInfoDiv");
-  cityInfoDiv.innerHTML= `<div class="cityName" id="cityName">${cityData.city}</div><div class="cityState" id="cityState">, ${cityData.state},</div><div><img src="https://flagsapi.com/${cityData.country.toUpperCase()}/flat/64.png"></div>`;
+  cityInfoDiv.innerHTML= `<div class="cityName" id="cityName">${cityData.city}</div></div><div class="countryFlagDiv"><img class="countryFlag" src="https://flagsapi.com/${cityData.country.toUpperCase()}/flat/64.png"></div>`;
   weatherCard.appendChild(cityInfoDiv);
 
-  if(cityData.city == cityData.state){
-    const cityState = document.getElementById("cityState");
-    cityState.remove();
-  }
 
   //WEATHERCARD INFO DEL TIEMPO
   //temperatura, convierte en entero y transforma a string + º
@@ -294,7 +302,7 @@ let renderData = (weatherData, cityData) => {
 
   let weatherInfoDiv = document.createElement("div");
   weatherInfoDiv.classList.add("weatherInfoDiv");
-  weatherInfoDiv. innerHTML = ` <div>${description} <img src="https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png" alt="${weatherData.weather[0].description}" class="weatherImg"></div><div>${temp}</div> <div>${humidity}</div>`;
+  weatherInfoDiv. innerHTML = ` <div class="temp">${temp}</div><div class="description">${description} <img class="descriptionImg" src="https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png" alt="${weatherData.weather[0].description}" class="weatherImg"></div> <div class="humidity">Humedad  ${humidity}</div>`;
 
   weatherCard.appendChild(weatherInfoDiv)
 

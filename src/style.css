@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap');
+
+
 body {
-  
+  font-family: 'Titillium Web', sans-serif;
   background-attachment: fixed;
   background-size: cover;
   background-position-x: center;
@@ -38,12 +41,14 @@ body {
   justify-content: center;
   flex-direction: column;
   max-width: 95%;
+  position: relative;
 }
 
 
 .searchBar {
   
   gap: 0.25rem;
+  
 }
 
 .searchBar * {
@@ -58,6 +63,38 @@ body {
 .searchBar label {
   display: none;
 }
+.searchBar input {
+  
+  padding-left: .5rem;
+
+}
+
+
+
+.opciones{
+  display: flex;
+  display: none;
+  position: absolute;
+  top: 65%;
+  z-index: 10;
+ 
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid black;
+  width: 100%;
+
+}
+
+.opcion{
+  padding: .5rem;
+  cursor: pointer;
+}
+
+.opcion:hover{
+  background-color: azure;
+}
+
+
 
 /*///////////////////////////////////////////////////////*/
 
@@ -92,8 +129,74 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
 }
+
+/*  CONTENIDO DE LA TARJETA WEATHER     */
+
+.weather{
+  gap: .5rem;
+}
+
+
+.cityInfoDiv{  
+  display: flex;
+  min-height: 2.3rem;
+  gap: 1rem;
+  align-items: center;
+}
+
+
+.cityName{
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.countryFlagDiv{
+  max-height: 1rem;
+  padding-top: .25rem;
+  min-width: 2.3rem;
+  display: flex;
+  align-items: center;
+}
+
+.countryFlag{
+  max-width: 2.3rem;
+}
+
+
+.weatherInfoDiv{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.temp{
+  font-size: 3rem;
+}
+
+.description{
+  display: flex;
+  align-items: center;
+  
+}
+
+.descriptionImg{
+  max-width: 2rem;
+  filter: brightness(140%);
+  -webkit-filter: brightness(140%);
+}
+
+.humidity{
+  display: flex;
+  align-items: center;
+  font-size: .9rem;
+  margin-left: -0.5rem;
+}
+
+
 
 /******************FOOTER********************************/
 
@@ -154,7 +257,7 @@ body {
 
 /*******************************************************/
 
-@media (width >= 650px){
+@media (width >= 500px){
 
   .searchBar *{
     font-size: 1.2rem;
@@ -167,6 +270,66 @@ body {
   .footerLink:hover{
     font-size: 1.35rem;
   }
+
+
+  .weather{
+    gap: 1rem;
+  }
+  
+  
+  .cityInfoDiv{  
+   
+    min-height: 3rem;
+    gap: 1.2rem;
+    align-items: center;
+  }
+  
+  
+  .cityName{
+    
+    font-size: 2.5rem;
+  }
+  
+  .countryFlagDiv{
+    min-height: 3rem;    
+    min-width: 3.5rem;
+   
+  }
+  
+  .countryFlag{
+    max-width: 3.5rem;
+  }
+  
+  
+  .weatherInfoDiv{   
+    gap: 1rem;
+  }
+  
+  .temp{
+    font-size: 5rem;
+  }
+  
+  .description{
+    
+    font-size: 1.5rem;
+    
+  }
+  
+  .descriptionImg{
+    max-width: 3rem;
+    filter: brightness(140%);
+    -webkit-filter: brightness(140%);
+  }
+  
+  .humidity{
+    
+    font-size: 1.2rem;
+    margin-left: -1rem;
+  }
+
+
+
+
 
 
 }
