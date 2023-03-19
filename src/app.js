@@ -269,6 +269,7 @@ let renderData = (weatherData, cityData) => {
   changeBg(weatherData.main.temp)
 
   weatherCard.innerHTML = ``;
+  mapCard.innerHTML = ``;
 
   
 
@@ -304,12 +305,18 @@ let renderData = (weatherData, cityData) => {
   weatherInfoDiv.classList.add("weatherInfoDiv");
   weatherInfoDiv. innerHTML = ` <div class="temp">${temp}</div><div class="description">${description} <img class="descriptionImg" src="https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png" alt="${weatherData.weather[0].description}" class="weatherImg"></div> <div class="humidity">Humedad  ${humidity}</div>`;
 
-  weatherCard.appendChild(weatherInfoDiv)
+  weatherCard.appendChild(weatherInfoDiv);
 
+  const lat = weatherData.coord.lat;
+  const lon = weatherData.coord.lon;
 
-
+  mapCard.innerHTML = `<iframe width="100%" height="700" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=${lat},%20${lon}&amp;t=&amp;z=9&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>`;
 
 };
+
+
+
+
 
 
 

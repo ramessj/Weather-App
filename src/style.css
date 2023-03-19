@@ -125,7 +125,7 @@ body {
   -ms-border-radius: 24px;
   -o-border-radius: 24px;
   border-radius: 24px;
-  padding: 1.2rem;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -197,6 +197,15 @@ body {
 }
 
 
+
+.map{padding: 0;}
+.map iframe{
+  border-radius: 24px;
+  -webkit-border-radius: 24px;
+  -moz-border-radius: 24px;
+  -ms-border-radius: 24px;
+  -o-border-radius: 24px;
+}
 
 /******************FOOTER********************************/
 
