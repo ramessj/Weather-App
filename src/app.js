@@ -101,6 +101,9 @@ inputSearchCity.addEventListener("keyup", (e) => {
     e.preventDefault();
     inputToCity(inputValue);
   }
+  else if(inputValue.length <= 3){
+    contenedorOpciones.style.display = "none"
+  }
 });
 
 // Evnet listener para el boton buscar
