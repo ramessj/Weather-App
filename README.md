@@ -11,7 +11,7 @@ Know the weather for the day!
 -Responsive design (mobile first)
 
 
-[Live App](https://github.com/ramessj/Weather-App)
+[Live App](https://ramessj.github.io/Weather-App/)
 
 ![alt text](https://raw.githubusercontent.com/ramessj/Weather-App/main/desktop.png "Desktop App Preview")
 
