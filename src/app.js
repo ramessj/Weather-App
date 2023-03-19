@@ -131,7 +131,7 @@ const attributeToGetCity = (e)=>{
 
 
 function getCity(coords) {
-  const endPoint = `http://api.openweathermap.org/geo/1.0/reverse?`;
+  const endPoint = `https://api.openweathermap.org/geo/1.0/reverse?`;
 
  
   const apiKey = process.env.OWEATHER_API_KEY;
