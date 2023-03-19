@@ -96,10 +96,10 @@ function inputToCity(inputValue){
 // Event listener para el ENTER del input
 
 inputSearchCity.addEventListener("keyup", (e) => {
-
-  if(e.key == "Enter"){
+  let inputValue = inputSearchCity.value; 
+  if(inputValue.length >= 4){
     e.preventDefault();
-    inputToCity(inputSearchCity.value);
+    inputToCity(inputValue);
   }
 });
 
@@ -240,6 +240,8 @@ function capitalizeFirstLetter(str) {
 
 function changeBg(temp){
   body.classList.remove("bgDefault");
+  body.classList.remove("bgHot");
+  body.classList.remove("bgCold");
   if(temp >= 25 ){
     body.classList.add("bgHot");
   }else if(temp <= 14){
